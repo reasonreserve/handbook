@@ -25,6 +25,8 @@ GitHub’s Cursor guide states that **the remote GitHub MCP server currently req
 
    - **macOS GUI apps** (if Cursor doesn’t see your shell env): use a small launcher script, or set the variable in your OS/session so Cursor inherits it.
 
+   - **`.env` in this repo** — Storing `GITHUB_MCP_PAT=…` here is fine (`.env` is gitignored). Remote MCP entries **do not auto-load** `.env`; the variable must still exist in **Cursor’s** environment. From a terminal in the project you can run `set -a && source .env && set +a` then **launch Cursor from that same terminal**, or export the variable in your shell profile / OS so the GUI app inherits it.
+
    The config uses **`${env:GITHUB_MCP_PAT}`** — Cursor resolves this when loading MCP ([config interpolation](https://cursor.com/docs/context/mcp)).
 
 4. **Config location** — Either:
