@@ -11,31 +11,15 @@ Official references:
 
 macOS does **not** give apps launched from **Spotlight** or the **Dock** your shell profile or `.env`. Cursor’s remote MCP only sees a header in config or `${env:…}` from the **real** process environment, so “just open Cursor” fails unless the token is in a place Cursor reads **without** a shell.
 
-**Do this once:**
+**Do this once (pick one file — don’t duplicate the same `github` server in both):**
 
-1. Open **`~/.cursor/mcp.json`** (your user folder — this file is **not** in the git repo).
-2. Set the GitHub server header to a **literal** bearer token (paste your PAT):
+1. **Project (this repo)** — Copy [`.cursor/mcp.json.example`](../.cursor/mcp.json.example) to **`.cursor/mcp.json`**, then replace `PASTE_YOUR_GITHUB_PAT_HERE` with your real PAT (fine-grained or classic). **`.cursor/mcp.json` is gitignored** so the token is not committed.
 
-   ```json
-   {
-     "mcpServers": {
-       "github": {
-         "url": "https://api.githubcopilot.com/mcp/",
-         "headers": {
-           "Authorization": "Bearer ghp_xxxxxxxxxxxx"
-         }
-       }
-     }
-   }
-   ```
-
-   Use your real fine-grained or classic token in place of `ghp_xxxxxxxxxxxx`.
+2. **Or global** — Same JSON in **`~/.cursor/mcp.json`** if you want the same GitHub MCP in every workspace.
 
 3. **Quit Cursor fully** and open it again from **Spotlight**. No Terminal, no export script.
 
-That file lives only on your Mac; it is not committed. Optionally run `chmod 600 ~/.cursor/mcp.json`.
-
-This repo’s [`.cursor/mcp.json`](../.cursor/mcp.json) intentionally **does not** define `github` so it **won’t override** your global MCP auth and force `${env:GITHUB_MCP_PAT}` when you haven’t exported anything.
+Optionally run `chmod 600 .cursor/mcp.json` or `chmod 600 ~/.cursor/mcp.json`.
 
 ## Why we mentioned `.env` and `${env:GITHUB_MCP_PAT}`
 
