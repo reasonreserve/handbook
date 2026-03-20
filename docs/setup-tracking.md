@@ -11,9 +11,9 @@ Work is tracked in **`reasonreserve/handbook`**:
 | `HANDBOOK_READ_TOKEN` | https://github.com/reasonreserve/handbook/issues/5 |
 | Align handbook with GitHub Projects docs | https://github.com/reasonreserve/handbook/issues/6 |
 
-## Org Project
+## Org project — Strategy & Roadmap
 
-Issues do **not** appear on [org Projects](https://github.com/orgs/reasonreserve/projects) until you **create a project** and **add** these issues (or link the repo).
+The org board **[Strategy & Roadmap](https://github.com/orgs/reasonreserve/projects/1)** includes handbook issues **#1–#6** with **Status**, **Quarter**, **Iteration**, **Start date**, and **Target date** (adjust in the project UI as plans shift).
 
 ## `internal-poc`
 
