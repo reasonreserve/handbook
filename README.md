@@ -22,7 +22,8 @@ After you publish **`reasonreserve/handbook`**, create **`reasonreserve/service-
 
 | Doc | Purpose |
 |-----|---------|
-| [docs/github-projects-setup.md](docs/github-projects-setup.md) | Org Projects, boards, linking repos |
+| [docs/github-projects-guide.md](docs/github-projects-guide.md) | **PM:** new org project checklist + alignment with GitHub’s official Projects docs |
+| [docs/github-projects-setup.md](docs/github-projects-setup.md) | Org Projects URLs, CLI, suggested columns |
 | [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md) | GitHub MCP in Cursor (PAT in `.cursor/mcp.json`) |
 | [docs/release-process.md](docs/release-process.md) | Tagging and releasing the handbook |
 

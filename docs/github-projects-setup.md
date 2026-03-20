@@ -2,6 +2,8 @@
 
 Organization on GitHub: **[reasonreserve](https://github.com/reasonreserve)**.
 
+**Start here for PM-aligned setup:** [github-projects-guide.md](github-projects-guide.md) — checklist and links to GitHub’s [About Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects), [Quickstart](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects), and [Best practices](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects).
+
 GitHub Projects (the built-in planning tool) is configured in the GitHub web UI or via the [GitHub CLI](https://cli.github.com/) / API. This doc covers both manual setup and what can be automated from your machine.
 
 ## Can Cursor create or manage boards “from this interface”?

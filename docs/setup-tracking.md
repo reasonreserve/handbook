@@ -9,6 +9,7 @@ Work is tracked in **`reasonreserve/handbook`**:
 | PAT bootstrap vs MCP | https://github.com/reasonreserve/handbook/issues/3 |
 | First handbook release | https://github.com/reasonreserve/handbook/issues/4 |
 | `HANDBOOK_READ_TOKEN` | https://github.com/reasonreserve/handbook/issues/5 |
+| Align handbook with GitHub Projects docs | https://github.com/reasonreserve/handbook/issues/6 |
 
 ## Org Project
 
