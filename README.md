@@ -1,6 +1,8 @@
 # Reason Reserve
 
-Project planning and tracking use [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects). After this repository exists on GitHub, open **Projects** on the repo (or org) and create a project linked to this repo.
+GitHub org: **[reasonreserve](https://github.com/reasonreserve)**.
+
+Project planning and tracking use [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects). After this repository exists under the org, open **Projects** on the repo or at the org level and create a project linked to this work.
 
 See [docs/github-projects-setup.md](docs/github-projects-setup.md) for a one-time setup checklist and suggested board layout.
 

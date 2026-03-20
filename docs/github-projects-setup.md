@@ -1,20 +1,46 @@
 # GitHub Projects setup for Reason Reserve
 
-GitHub Projects (the built-in planning tool) is configured in the GitHub web UI. This doc matches what you do once the code is pushed to a GitHub repository.
+Organization on GitHub: **[reasonreserve](https://github.com/reasonreserve)**.
+
+GitHub Projects (the built-in planning tool) is configured in the GitHub web UI or via the [GitHub CLI](https://cli.github.com/) / API. This doc covers both manual setup and what can be automated from your machine.
+
+## Can Cursor create or manage boards “from this interface”?
+
+**Not without your GitHub credentials.** This workspace does not include a GitHub MCP integration (only other tools like Linear may be available elsewhere). The assistant has no standing login to [github.com/reasonreserve](https://github.com/reasonreserve).
+
+What *does* work:
+
+| Approach | What you get |
+|----------|----------------|
+| **Browser** | Full control: [Org → Projects](https://github.com/orgs/reasonreserve/projects), create boards, fields, workflows ([About Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)). |
+| **`gh` on your machine** | After `gh auth login` with access to the org, the assistant can run **`gh project`** commands in the terminal to create/link projects—if you’ve authenticated and network is allowed. |
+| **`GITHUB_TOKEN` / fine-grained PAT** | Scripts or API calls can create Projects v2 items; the token must live in your environment or CI secrets—**do not paste tokens into chat**. |
+
+So: **day-to-day board management** stays in GitHub’s UI (or `gh`). **This repo** can still hold the plan, issue templates, and later automation; I can help draft issues/labels and terminal commands once `gh` is installed and logged in.
 
 ## Prerequisites
 
-1. **Create the repository on GitHub** (empty repo is fine), then push this project:
+1. **Create the repository** under the org (when ready), then push this project:
 
    ```bash
-   git remote add origin https://github.com/<your-org-or-user>/reasonreserve.git
+   git remote add origin https://github.com/reasonreserve/reasonreserve.git
    git branch -M main
    git push -u origin main
    ```
 
-2. **Sign in to GitHub** in the browser with permission to manage the repo (or the organization).
+   (Adjust the repo name if yours differs.)
 
-## Create a project linked to this repo
+2. **Sign in to GitHub** in the browser with permission to manage the org or repositories.
+
+3. **Optional (for CLI from Cursor):** install GitHub CLI (`brew install gh` on macOS), then `gh auth login` and ensure your account can administer **[github.com/reasonreserve](https://github.com/reasonreserve)** projects.
+
+## Create a project (org-level or linked to a repo)
+
+**Org-level:** open **[Projects for @reasonreserve](https://github.com/orgs/reasonreserve/projects)** → **New project**.
+
+**Repo-linked:** open the repository on GitHub → **Projects** (top bar of the repo).
+
+### Repo-linked steps
 
 1. Open the repository on GitHub.
 2. Click **Projects** (top bar of the repo).
@@ -53,7 +79,7 @@ You can add GitHub’s **Status** field (or custom fields) for finer states with
 If you install [GitHub CLI](https://cli.github.com/) (`gh`), you can create and manage projects from the terminal after `gh auth login`. Example:
 
 ```bash
-gh project create --title "Reason Reserve roadmap" --owner <user-or-org>
+gh project create --title "Reason Reserve roadmap" --owner reasonreserve
 ```
 
 Exact flags depend on your `gh` version; run `gh project --help` for current syntax.
