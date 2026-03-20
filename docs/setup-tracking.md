@@ -9,6 +9,8 @@
 
 The org project **description** points here: programme planning lives in the **`portfolio`** repo; the **Portfolio** board adds fields and views across repos.
 
+**Portfolio issues (phases & outcomes):** see the [portfolio README](https://github.com/reasonreserve/portfolio#readme) — [#1–#7](https://github.com/reasonreserve/portfolio/issues).
+
 ---
 
 Work is tracked in **`reasonreserve/handbook`**:
