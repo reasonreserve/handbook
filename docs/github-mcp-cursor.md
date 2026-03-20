@@ -1,92 +1,70 @@
 # GitHub MCP in Cursor
 
-This repo mirrors the recommended **remote** [GitHub MCP server](https://github.com/github/github-mcp-server) in [`.cursor/mcp.json`](../.cursor/mcp.json). Official references:
+Official references:
 
-- [Setting up the GitHub MCP Server (VS Code)](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/set-up-the-github-mcp-server?tool=vscode) — GitHub docs (marketplace vs manual config).
-- [Install GitHub MCP Server in Cursor](https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-cursor.md) — host-specific steps (PAT, verify, troubleshoot).
+- [Setting up the GitHub MCP Server (VS Code)](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/set-up-the-github-mcp-server?tool=vscode)
+- [Install GitHub MCP Server in Cursor](https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-cursor.md)
 
-## Why a PAT?
+## Spotlight / Dock: the simple setup (no Terminal, no Docker)
 
-GitHub’s Cursor guide states that **the remote GitHub MCP server currently requires a [Personal Access Token](https://github.com/settings/personal-access-tokens)** while Cursor’s Streamable HTTP support is used. Configure the token via an environment variable so it never lands in git.
+**You do not need Docker** for the setup we use. Docker is only if you run the MCP server **locally** via a container; the config points at GitHub’s **hosted** URL `https://api.githubcopilot.com/mcp/`.
 
-## One-time setup
+macOS does **not** give apps launched from **Spotlight** or the **Dock** your shell profile or `.env`. Cursor’s remote MCP only sees a header in config or `${env:…}` from the **real** process environment, so “just open Cursor” fails unless the token is in a place Cursor reads **without** a shell.
 
-1. **Cursor version** — Use **Cursor v0.48.0+** (Streamable HTTP). See [GitHub’s Cursor install guide](https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-cursor.md).
+**Do this once:**
 
-2. **Create a token** — [Fine-grained](https://github.com/settings/personal-access-tokens) or classic PAT, with only the permissions you want the agent to have (e.g. repository contents, issues, pull requests; add **Projects** permissions if you want board automation). Reason Reserve org: [reasonreserve](https://github.com/reasonreserve).
+1. Open **`~/.cursor/mcp.json`** (your user folder — this file is **not** in the git repo).
+2. Set the GitHub server header to a **literal** bearer token (paste your PAT):
 
-3. **Set the environment variable** (pick one approach):
+   ```json
+   {
+     "mcpServers": {
+       "github": {
+         "url": "https://api.githubcopilot.com/mcp/",
+         "headers": {
+           "Authorization": "Bearer ghp_xxxxxxxxxxxx"
+         }
+       }
+     }
+   }
+   ```
 
-   - **Shell profile** (applies after you open a new terminal and launch Cursor from that environment):
+   Use your real fine-grained or classic token in place of `ghp_xxxxxxxxxxxx`.
 
-     ```bash
-     export GITHUB_MCP_PAT="ghp_..."   # or fine-grained token value
-     ```
+3. **Quit Cursor fully** and open it again from **Spotlight**. No Terminal, no export script.
 
-   - **macOS GUI apps** (if Cursor doesn’t see your shell env): use a small launcher script, or set the variable in your OS/session so Cursor inherits it.
+That file lives only on your Mac; it is not committed. Optionally run `chmod 600 ~/.cursor/mcp.json`.
 
-   - **`.env` in this repo** — Storing `GITHUB_MCP_PAT=…` here is fine (`.env` is gitignored). Remote MCP entries **do not auto-load** `.env`; the variable must still exist in **Cursor’s** environment. From a terminal in the project you can run `set -a && source .env && set +a` then **launch Cursor from that same terminal**, or export the variable in your shell profile / OS so the GUI app inherits it.
+This repo’s [`.cursor/mcp.json`](../.cursor/mcp.json) intentionally **does not** define `github` so it **won’t override** your global MCP auth and force `${env:GITHUB_MCP_PAT}` when you haven’t exported anything.
 
-   The config uses **`${env:GITHUB_MCP_PAT}`** — Cursor resolves this when loading MCP ([config interpolation](https://cursor.com/docs/context/mcp)).
+## Why we mentioned `.env` and `${env:GITHUB_MCP_PAT}`
 
-## Automating the PAT (recommended)
+`Authorization: Bearer ${env:GITHUB_MCP_PAT}` avoids storing the token in a file on disk (only in your environment). That’s good for some workflows, but on macOS a normal Spotlight launch **does not** load `.env`. So either:
 
-Remote MCP still **cannot** read `.env` by itself. You automate by making sure **Cursor’s process** inherits `GITHUB_MCP_PAT` without typing `export` each time:
+- put the token in **`~/.cursor/mcp.json`** as above (simplest for Spotlight), or  
+- keep `${env:…}` and **export** the variable before starting Cursor (Terminal / script / direnv).
 
-### A. Launcher script (works with Dock-style `open`, no extra tools)
+## Optional: launcher script or direnv
 
-From the repo:
+If you prefer **not** to keep the PAT in `~/.cursor/mcp.json`, use [`.env`](../.env) (gitignored) plus:
 
-```bash
-./scripts/open-cursor.sh
-```
+- **`./scripts/open-cursor.sh`** — sources `.env`, then starts Cursor; or  
+- **[direnv](https://direnv.net/)** + [`.envrc`](../.envrc) — then run **`cursor .`** from a terminal in this repo.
 
-This **sources `.env`** then starts the **Cursor CLI** (`cursor`) if it’s on your `PATH`, otherwise **`open -a Cursor`**. Use this from Terminal, Raycast, Alfred, or a macOS Shortcut that runs the script—one double-click workflow after you wire it up.
+See [Cursor MCP interpolation](https://cursor.com/docs/context/mcp).
 
-Optional **shell alias** (add to `~/.zshrc`):
+## Cursor version
 
-```bash
-alias cursor-rr='/Users/ottomattas/Downloads/repos/reasonreserve/scripts/open-cursor.sh'
-```
+Use **Cursor v0.48.0+** (Streamable HTTP). See [GitHub’s Cursor install guide](https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-cursor.md).
 
-Adjust the path if you move the repo.
+## Token permissions
 
-### B. direnv (auto-load `.env` in every terminal `cd`)
-
-1. Install: `brew install direnv`  
-2. Add to `~/.zshrc`: `eval "$(direnv hook zsh)"`  
-3. In this repo once: `direnv allow`
-
-The committed [`.envrc`](../.envrc) loads `.env` when you enter the directory. Then start Cursor **from a terminal** with cwd inside the repo:
-
-```bash
-cd /path/to/reasonreserve
-cursor .
-```
-
-Environment flows into the Cursor process. **Opening Cursor from the Dock** still skips direnv—use **A** for that.
-
-### C. Why not “set it once forever” on macOS?
-
-GUI apps launched from Finder/Dock **do not** read your shell profile. Options like `launchctl setenv` are fragile across OS versions. The reliable patterns are **A** (script) or **B** (terminal + direnv).
-
-4. **Config location** — Either:
-
-   - **Project:** `.cursor/mcp.json` in this repo (committed, no secrets), or  
-   - **Global:** `~/.cursor/mcp.json` for all workspaces.
-
-   If both define `github`, follow Cursor’s merge/precedence behavior in **Settings → Tools & Integrations → MCP**.
-
-5. **Restart Cursor** completely, then check **Settings → MCP** for a healthy **github** server and **Available Tools** in Agent.
-
-## Optional: GitHub’s one-click install
-
-If you prefer the guided flow, use the **Install MCP Server** button in [GitHub’s Cursor install doc](https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-cursor.md) — it still expects you to substitute your PAT in the generated config.
+Fine-grained PAT: repo + org **Projects** as needed for [reasonreserve](https://github.com/reasonreserve). See [fine-grained PAT permissions](https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens).
 
 ## Org / Copilot policy
 
-If you use **Copilot Business / Enterprise**, an admin may need to enable **“MCP servers in Copilot”** for your org. See [GitHub’s prerequisites](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/set-up-the-github-mcp-server?tool=vscode).
+If you use **Copilot Business / Enterprise**, an admin may need **“MCP servers in Copilot”** enabled. See [GitHub’s prerequisites](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/set-up-the-github-mcp-server?tool=vscode).
 
 ## Verify
 
-After a restart, ask Agent something like: “List repositories I can access under the reasonreserve org” (or use a specific MCP tool if listed). Check **Output → MCP** if tools fail to load.
+After a restart, check **Settings → MCP** for **github**, then try Agent with a GitHub-related question. If something 403s, confirm token scopes.

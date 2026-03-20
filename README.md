@@ -6,7 +6,7 @@ Project planning and tracking use [GitHub Projects](https://docs.github.com/en/i
 
 See [docs/github-projects-setup.md](docs/github-projects-setup.md) for a one-time setup checklist and suggested board layout.
 
-To connect Cursor Agent to GitHub APIs (issues, repos, and more), configure the **GitHub MCP server** — [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md). To avoid exporting the PAT every session, use **`./scripts/open-cursor.sh`** or **direnv** (documented there).
+To connect Cursor Agent to GitHub APIs (issues, repos, and more), configure the **GitHub MCP server** — [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md). **Spotlight / Dock:** put the token in **`~/.cursor/mcp.json`** (see doc); no Docker or Terminal required. Optional: **`./scripts/open-cursor.sh`** or **direnv** if you prefer not to store the PAT in that file.
 
 ## Quick links (after the repo is on GitHub)
 
