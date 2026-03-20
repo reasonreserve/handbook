@@ -4,6 +4,8 @@ Canonical **developer experience** content for the **[reasonreserve](https://git
 
 **Current version:** see [`VERSION`](VERSION) (also published as Git [tags](https://github.com/reasonreserve/handbook/releases) `v*.*.*`).
 
+**Setup backlog (issues + optional Project):** [docs/setup-tracking.md](docs/setup-tracking.md)
+
 ## Who this is for
 
 - **Everyone** — how we track work on GitHub ([Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)).
