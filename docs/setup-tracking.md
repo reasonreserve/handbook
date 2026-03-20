@@ -1,21 +1,24 @@
-# Handbook / service-template setup — tracked on GitHub
+# Handbook / service-template — where to track work
 
-Work is tracked in **`reasonreserve/internal-poc`** until **`reasonreserve/handbook`** exists (then you can move or mirror issues).
+## Important
 
-| Item | Link |
-|------|------|
-| **Epic** | https://github.com/reasonreserve/internal-poc/issues/1 |
-| Publish handbook repo | https://github.com/reasonreserve/internal-poc/issues/2 |
-| Create service-template template repo | https://github.com/reasonreserve/internal-poc/issues/3 |
-| PAT / bootstrap docs | https://github.com/reasonreserve/internal-poc/issues/4 |
-| First handbook release | https://github.com/reasonreserve/internal-poc/issues/5 |
-| `HANDBOOK_READ_TOKEN` smoke test | https://github.com/reasonreserve/internal-poc/issues/6 |
+**Do not** track handbook or service-template setup in **`internal-poc`**. That repo is for the product monorepo. DX/handbook work belongs in **`reasonreserve/handbook`** (this content once pushed).
 
-## Optional: GitHub Project
+Issues **#1–#6** that were briefly opened on `internal-poc` were **closed as not planned** and explained in a comment — they were created in the wrong repository by mistake.
 
-The GitHub MCP in Cursor does **not** expose Projects v2 creation. To use a board:
+## After `reasonreserve/handbook` exists
 
-1. **Org → Projects → New project** (or repo project).
-2. **Add** issues `#1`–`#6` from `internal-poc` (or link the whole repo).
+1. **Create the epic and tasks again** in **`reasonreserve/handbook`** (same titles/bodies as in git history or `docs/setup-tracking.md` in an older commit if you need the text).
+2. **Org Project** ([`github.com/orgs/reasonreserve/projects`](https://github.com/orgs/reasonreserve/projects)): create a project and **add** those issues — issues only appear on a board after you attach them.
 
-When **`handbook`** is live, create a project there and archive or migrate this epic as you prefer.
+## Quick checklist (copy into new issues when handbook repo is live)
+
+- [ ] Push `main` to `reasonreserve/handbook`
+- [ ] Create `reasonreserve/service-template` + enable **Template repository**
+- [ ] PAT / bootstrap docs for org repo creation
+- [ ] First handbook release tag + GitHub Release
+- [ ] `HANDBOOK_READ_TOKEN` on first consumer if handbook is private
+
+## Creating `handbook` on GitHub
+
+The API cannot create the org repo with the current MCP token (403). Create **`reasonreserve/handbook`** in the UI or with `gh` / a PAT that has org repo creation, then push this local repo.

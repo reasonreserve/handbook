@@ -4,7 +4,7 @@ Canonical **developer experience** content for the **[reasonreserve](https://git
 
 **Current version:** see [`VERSION`](VERSION) (also published as Git [tags](https://github.com/reasonreserve/handbook/releases) `v*.*.*`).
 
-**Setup backlog (issues + optional Project):** [docs/setup-tracking.md](docs/setup-tracking.md)
+**Setup backlog:** track in **`reasonreserve/handbook`** once created — not in `internal-poc`. See [docs/setup-tracking.md](docs/setup-tracking.md).
 
 ## Who this is for
 
