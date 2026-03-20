@@ -2,6 +2,8 @@
 
 This repository is **`reasonreserve/handbook`** — the canonical DX / Cursor / GitHub guidance for Reason Reserve.
 
+**Commit messages:** follow **[Conventional Commits](conventional-commits.md)** (imperative subject, `type(scope): description`).
+
 ## Versioning
 
 - **`VERSION`** at the repo root is the **single source of truth** (semver, e.g. `1.2.0`, no `v` prefix).

@@ -12,7 +12,7 @@ Canonical **developer experience** content for the **[reasonreserve](https://git
 
 - **Everyone** — how we track work on GitHub ([Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)).
 - **Developers using Cursor** — connect the GitHub MCP ([docs/github-mcp-cursor.md](docs/github-mcp-cursor.md)).
-- **Maintainers** — how to [cut a handbook release](docs/release-process.md).
+- **Maintainers** — [Conventional Commits](docs/conventional-commits.md) for commit messages; [cut a handbook release](docs/release-process.md).
 
 ## New service / app repositories
 
@@ -24,6 +24,7 @@ After you publish **`reasonreserve/handbook`**, create **`reasonreserve/service-
 
 | Doc | Purpose |
 |-----|---------|
+| [docs/conventional-commits.md](docs/conventional-commits.md) | **Git:** Conventional Commits + **imperative** subjects ([cheatsheet](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)) |
 | [docs/github-projects-guide.md](docs/github-projects-guide.md) | **PM:** new org project checklist + alignment with GitHub’s official Projects docs |
 | [docs/github-projects-setup.md](docs/github-projects-setup.md) | Org Projects URLs, CLI, suggested columns |
 | [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md) | GitHub MCP in Cursor (PAT in `.cursor/mcp.json`) |
