@@ -43,6 +43,8 @@ Summarized from [Best practices for Projects](https://docs.github.com/en/issues/
 ## Relation to other handbook docs
 
 - [github-projects-setup.md](github-projects-setup.md) — org URL, CLI snippets, suggested columns.
-- [setup-tracking.md](setup-tracking.md) — handbook rollout issues.
+- [setup-tracking.md](setup-tracking.md) — handbook rollout issues and **programme** links ([`portfolio`](https://github.com/reasonreserve/portfolio) ↔ **[Portfolio](https://github.com/orgs/reasonreserve/projects/1)**).
+
+**Programme epics** for Reason Reserve / Aruait belong in **`reasonreserve/portfolio`**; add them to the **[Portfolio](https://github.com/orgs/reasonreserve/projects/1)** org project for stakeholder views. Handbook issues stay in **`handbook`** unless promoted or linked as child work.
 
 When content work arrives, prefer **issues in the relevant repo** + **add to project** so the board stays the planning surface.

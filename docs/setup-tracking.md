@@ -1,5 +1,16 @@
 # Handbook / service-template — GitHub tracking
 
+## Programme (Reason Reserve / Aruait)
+
+| Surface | Role | Link |
+|--------|------|------|
+| **Epic issues** | Programme-level epics, phases, outcomes | [`reasonreserve/portfolio`](https://github.com/reasonreserve/portfolio) |
+| **Org project** | Stakeholder views (table / board / roadmap) | **[Portfolio](https://github.com/orgs/reasonreserve/projects/1)** |
+
+The org project **description** points here: programme planning lives in the **`portfolio`** repo; the **Portfolio** board adds fields and views across repos.
+
+---
+
 Work is tracked in **`reasonreserve/handbook`**:
 
 | Item | Link |
@@ -10,10 +21,6 @@ Work is tracked in **`reasonreserve/handbook`**:
 | First handbook release | https://github.com/reasonreserve/handbook/issues/4 |
 | `HANDBOOK_READ_TOKEN` | https://github.com/reasonreserve/handbook/issues/5 |
 | Align handbook with GitHub Projects docs | https://github.com/reasonreserve/handbook/issues/6 |
-
-## Org project — Strategy & Roadmap
-
-The org board **[Strategy & Roadmap](https://github.com/orgs/reasonreserve/projects/1)** includes handbook issues **#1–#6** with **Status**, **Quarter**, **Iteration**, **Start date**, and **Target date** (adjust in the project UI as plans shift).
 
 ## `internal-poc`
 

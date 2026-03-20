@@ -6,6 +6,8 @@ Canonical **developer experience** content for the **[reasonreserve](https://git
 
 **Setup backlog:** [issues on handbook](https://github.com/reasonreserve/handbook/issues) — [docs/setup-tracking.md](docs/setup-tracking.md).
 
+**Programme (epics):** [`reasonreserve/portfolio`](https://github.com/reasonreserve/portfolio) — org project **[Portfolio](https://github.com/orgs/reasonreserve/projects/1)**.
+
 ## Who this is for
 
 - **Everyone** — how we track work on GitHub ([Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)).
