@@ -4,8 +4,6 @@
 
 **Only one place for MCP:** **`.cursor/mcp.json`** in this repo (copy from [`.cursor/mcp.json.example`](./.cursor/mcp.json.example)) and replace `PASTE_YOUR_GITHUB_PAT_HERE` with your token.
 
-**`.env` / `.env.example` are not used for GitHub MCP** in this setup. They are for optional **future** local env vars (e.g. when you add application code). Do not put your PAT in `.env` unless you deliberately switch to `${env:GITHUB_MCP_PAT}` in `mcp.json` and load the env yourself.
-
 ---
 
 Official references:
@@ -17,7 +15,7 @@ Official references:
 
 **You do not need Docker** for the setup we use. Docker is only if you run the MCP server **locally** via a container; the config points at GitHub’s **hosted** URL `https://api.githubcopilot.com/mcp/`.
 
-macOS does **not** give apps launched from **Spotlight** or the **Dock** your shell profile or `.env`. Cursor’s remote MCP only sees a header in config or `${env:…}` from the **real** process environment, so “just open Cursor” fails unless the token is in a place Cursor reads **without** a shell.
+macOS does **not** give apps launched from **Spotlight** or the **Dock** your shell profile. Cursor’s remote MCP only sees a header in config or `${env:…}` from the **real** process environment, so “just open Cursor” fails unless the token is in a place Cursor reads **without** a shell.
 
 **Do this once (pick one file — don’t duplicate the same `github` server in both):**
 
@@ -31,7 +29,7 @@ Optionally run `chmod 600 .cursor/mcp.json` or `chmod 600 ~/.cursor/mcp.json`.
 
 ## Advanced: `${env:GITHUB_MCP_PAT}` instead of a literal token
 
-If you set `Authorization` to `Bearer ${env:GITHUB_MCP_PAT}` in `mcp.json`, you must **export** that variable in the environment Cursor inherits (macOS Spotlight does **not** load `.env` automatically). See [Cursor MCP interpolation](https://cursor.com/docs/context/mcp). For most people, a **literal** `Bearer` token in `.cursor/mcp.json` is simpler.
+If you set `Authorization` to `Bearer ${env:GITHUB_MCP_PAT}` in `mcp.json`, you must **export** that variable in the environment Cursor inherits. See [Cursor MCP interpolation](https://cursor.com/docs/context/mcp). For most people, a **literal** `Bearer` token in `.cursor/mcp.json` is simpler.
 
 ## Cursor version
 
@@ -53,8 +51,7 @@ After a restart, check **Settings → MCP** for **github**, then try Agent with 
 
 1. **`.cursor/mcp.json`** exists in this repo (copy from [`.cursor/mcp.json.example`](./.cursor/mcp.json.example)) and **`PASTE_YOUR_GITHUB_PAT_HERE` is replaced** with your real token — not the placeholder string.
 2. **Only one `github` MCP entry** — either this project’s `.cursor/mcp.json` **or** `~/.cursor/mcp.json`, not both with different auth (avoid conflicts). Global can be an empty `{ "mcpServers": {} }` when using the project file.
-3. **`.env` is gitignored** — this repo’s `.gitignore` includes `.env` so secrets aren’t committed.
-4. **PAT scopes** — fine-grained token includes org **Projects** (and repo **Issues** / **Contents** / etc.) for [reasonreserve](https://github.com/reasonreserve), as you configured.
-5. **Restart Cursor** after changing `mcp.json`, then confirm **Settings → MCP** shows **github** connected.
+3. **PAT scopes** — fine-grained token includes org **Projects** (and repo **Issues** / **Contents** / etc.) for [reasonreserve](https://github.com/reasonreserve), as you configured.
+4. **Restart Cursor** after changing `mcp.json`, then confirm **Settings → MCP** shows **github** connected.
 
 I can use GitHub MCP tools in Agent only after Cursor loads this config and the token is valid — I don’t have access to your GitHub account without that connection.
