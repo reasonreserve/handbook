@@ -6,6 +6,8 @@ Project planning and tracking use [GitHub Projects](https://docs.github.com/en/i
 
 See [docs/github-projects-setup.md](docs/github-projects-setup.md) for a one-time setup checklist and suggested board layout.
 
+To connect Cursor Agent to GitHub APIs (issues, repos, and more), configure the **GitHub MCP server** — [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md).
+
 ## Quick links (after the repo is on GitHub)
 
 - **New issue** — use the templates under `.github/ISSUE_TEMPLATE/` so work items have consistent titles and labels for the board.

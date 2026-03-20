@@ -18,6 +18,8 @@ What *does* work:
 
 So: **day-to-day board management** stays in GitHub’s UI (or `gh`). **This repo** can still hold the plan, issue templates, and later automation; I can help draft issues/labels and terminal commands once `gh` is installed and logged in.
 
+**Cursor + GitHub MCP:** After you configure [GitHub MCP in Cursor](github-mcp-cursor.md) (remote server + PAT in `GITHUB_MCP_PAT`), Agent can use GitHub tools subject to your token’s scopes—closer to “manage from the IDE,” still not a full replacement for the Projects UI for every drag-and-drop action.
+
 ## Prerequisites
 
 1. **Create the repository** under the org (when ready), then push this project:
