@@ -1,0 +1,89 @@
+name: Handbook version check
+
+# Opens an issue when reasonreserve/handbook has a newer release than HANDBOOK_VERSION.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  HANDBOOK_REPO: reasonreserve/handbook
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read pinned handbook version
+        id: pinned
+        run: |
+          v=$(tr -d '[:space:]' < HANDBOOK_VERSION)
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "Pinned handbook version: $v"
+
+      - name: Fetch latest handbook release tag
+        id: latest
+        run: |
+          set -euo pipefail
+          if [ -n "${{ secrets.HANDBOOK_READ_TOKEN }}" ]; then
+            export GH_TOKEN="${{ secrets.HANDBOOK_READ_TOKEN }}"
+          else
+            export GH_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          fi
+          TAG=$(gh api "repos/${HANDBOOK_REPO}/releases/latest" --jq .tag_name 2>/dev/null || true)
+          if [ -z "${TAG:-}" ]; then
+            echo "tag=" >> "$GITHUB_OUTPUT"
+            echo "::warning::Could not read latest release from ${HANDBOOK_REPO}. If handbook is private, add secret HANDBOOK_READ_TOKEN with read access to that repo."
+            exit 0
+          fi
+          CLEAN="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "clean=$CLEAN" >> "$GITHUB_OUTPUT"
+          echo "Latest handbook release: $TAG"
+
+      - name: Compare versions and open issue if behind
+        if: steps.latest.outputs.clean != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          PINNED="${{ steps.pinned.outputs.version }}"
+          LATEST="${{ steps.latest.outputs.clean }}"
+          TAG="${{ steps.latest.outputs.tag }}"
+
+          if [ "$PINNED" = "$LATEST" ]; then
+            echo "Up to date with handbook $TAG"
+            exit 0
+          fi
+
+          FIRST=$(printf '%s\n' "$PINNED" "$LATEST" | sort -V | head -1)
+          if [ "$FIRST" != "$PINNED" ]; then
+            echo "Pinned version is not older than latest (pinned=$PINNED latest=$LATEST); skipping."
+            exit 0
+          fi
+
+          TITLE="📘 Handbook ${TAG} available (this repo pins ${PINNED})"
+
+          if gh issue list --repo "$GITHUB_REPOSITORY" --state open --json title -q '.[].title' | grep -Fxq "$TITLE"; then
+            echo "An open issue with this title already exists; skipping."
+            exit 0
+          fi
+
+          BODY="A newer **[handbook](https://github.com/${HANDBOOK_REPO})** release is available.
+
+          | | Version |
+          |--|--|
+          | **Pinned in this repo** | \`${PINNED}\` (\`HANDBOOK_VERSION\`) |
+          | **Latest handbook release** | \`${TAG}\` |
+
+          **What to do:** review the [handbook releases](https://github.com/${HANDBOOK_REPO}/releases), adopt changes as needed, then update \`HANDBOOK_VERSION\` to \`${LATEST}\` and merge.
+
+          _Opened by workflow [\`${{ github.workflow }}\`](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})._"
+
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "$BODY"

@@ -1,14 +1,30 @@
-# Reason Reserve
+# Reason Reserve Handbook
 
-GitHub org: **[reasonreserve](https://github.com/reasonreserve)**.
+Canonical **developer experience** content for the **[reasonreserve](https://github.com/reasonreserve)** org: GitHub Projects usage, Cursor + **GitHub MCP** setup, and shared issue templates.
 
-Project planning and tracking use [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects). After this repository exists under the org, open **Projects** on the repo or at the org level and create a project linked to this work.
+**Current version:** see [`VERSION`](VERSION) (also published as Git [tags](https://github.com/reasonreserve/handbook/releases) `v*.*.*`).
 
-See [docs/github-projects-setup.md](docs/github-projects-setup.md) for a one-time setup checklist and suggested board layout.
+## Who this is for
 
-To connect Cursor Agent to GitHub APIs (issues, repos, and more), configure the **GitHub MCP server** — [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md). Copy **`.cursor/mcp.json.example`** → **`.cursor/mcp.json`** and paste your PAT there (gitignored). Use a **global** `~/.cursor/mcp.json` instead if you want the same MCP in every workspace (pick one place for the `github` server so it isn’t defined twice).
+- **Everyone** — how we track work on GitHub ([Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)).
+- **Developers using Cursor** — connect the GitHub MCP ([docs/github-mcp-cursor.md](docs/github-mcp-cursor.md)).
+- **Maintainers** — how to [cut a handbook release](docs/release-process.md).
 
-## Quick links (after the repo is on GitHub)
+## New service / app repositories
 
-- **New issue** — use the templates under `.github/ISSUE_TEMPLATE/` so work items have consistent titles and labels for the board.
-- **Project board** — **Repository → Projects** (or your organization’s **Projects** tab) → **New project**.
+Do **not** fork this repo for product code. Use **[service-template](service-template/README.md)** as the GitHub **template** for new repos: it includes a **weekly check** that **opens an issue** when a newer handbook release exists (live tracking + notification).
+
+After you publish **`reasonreserve/handbook`**, create **`reasonreserve/service-template`** from the [`service-template/`](service-template/) folder (see template README).
+
+## Docs in this repo
+
+| Doc | Purpose |
+|-----|---------|
+| [docs/github-projects-setup.md](docs/github-projects-setup.md) | Org Projects, boards, linking repos |
+| [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md) | GitHub MCP in Cursor (PAT in `.cursor/mcp.json`) |
+| [docs/release-process.md](docs/release-process.md) | Tagging and releasing the handbook |
+
+## Quick links
+
+- **Issue templates** — `.github/ISSUE_TEMPLATE/`
+- **MCP config template** — [`.cursor/mcp.json.example`](.cursor/mcp.json.example) → copy to `.cursor/mcp.json` (gitignored)
