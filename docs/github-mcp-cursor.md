@@ -1,5 +1,13 @@
 # GitHub MCP in Cursor
 
+## Where does the GitHub PAT go?
+
+**Only one place for MCP:** **`.cursor/mcp.json`** in this repo (copy from [`.cursor/mcp.json.example`](./.cursor/mcp.json.example)) and replace `PASTE_YOUR_GITHUB_PAT_HERE` with your token.
+
+**`.env` / `.env.example` are not used for GitHub MCP** in this setup. They are for optional **future** local env vars (e.g. when you add application code). Do not put your PAT in `.env` unless you deliberately switch to `${env:GITHUB_MCP_PAT}` in `mcp.json` and load the env yourself.
+
+---
+
 Official references:
 
 - [Setting up the GitHub MCP Server (VS Code)](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/set-up-the-github-mcp-server?tool=vscode)
@@ -21,21 +29,9 @@ macOS does **not** give apps launched from **Spotlight** or the **Dock** your sh
 
 Optionally run `chmod 600 .cursor/mcp.json` or `chmod 600 ~/.cursor/mcp.json`.
 
-## Why we mentioned `.env` and `${env:GITHUB_MCP_PAT}`
+## Advanced: `${env:GITHUB_MCP_PAT}` instead of a literal token
 
-`Authorization: Bearer ${env:GITHUB_MCP_PAT}` avoids storing the token in a file on disk (only in your environment). That’s good for some workflows, but on macOS a normal Spotlight launch **does not** load `.env`. So either:
-
-- put the token in **`~/.cursor/mcp.json`** as above (simplest for Spotlight), or  
-- keep `${env:…}` and **export** the variable before starting Cursor (Terminal / script / direnv).
-
-## Optional: launcher script or direnv
-
-If you prefer **not** to keep the PAT in `~/.cursor/mcp.json`, use [`.env`](../.env) (gitignored) plus:
-
-- **`./scripts/open-cursor.sh`** — sources `.env`, then starts Cursor; or  
-- **[direnv](https://direnv.net/)** + [`.envrc`](../.envrc) — then run **`cursor .`** from a terminal in this repo.
-
-See [Cursor MCP interpolation](https://cursor.com/docs/context/mcp).
+If you set `Authorization` to `Bearer ${env:GITHUB_MCP_PAT}` in `mcp.json`, you must **export** that variable in the environment Cursor inherits (macOS Spotlight does **not** load `.env` automatically). See [Cursor MCP interpolation](https://cursor.com/docs/context/mcp). For most people, a **literal** `Bearer` token in `.cursor/mcp.json` is simpler.
 
 ## Cursor version
 
