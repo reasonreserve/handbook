@@ -6,7 +6,7 @@ Project planning and tracking use [GitHub Projects](https://docs.github.com/en/i
 
 See [docs/github-projects-setup.md](docs/github-projects-setup.md) for a one-time setup checklist and suggested board layout.
 
-To connect Cursor Agent to GitHub APIs (issues, repos, and more), configure the **GitHub MCP server** — [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md). Copy **`.cursor/mcp.json.example`** → **`.cursor/mcp.json`** and paste your PAT there (gitignored), or use **`~/.cursor/mcp.json`**. Optional: **`./scripts/open-cursor.sh`** or **direnv** if you use `${env:GITHUB_MCP_PAT}` instead.
+To connect Cursor Agent to GitHub APIs (issues, repos, and more), configure the **GitHub MCP server** — [docs/github-mcp-cursor.md](docs/github-mcp-cursor.md). Copy **`.cursor/mcp.json.example`** → **`.cursor/mcp.json`** and paste your PAT there (gitignored). Use a **global** `~/.cursor/mcp.json` instead if you want the same MCP in every workspace (pick one place for the `github` server so it isn’t defined twice).
 
 ## Quick links (after the repo is on GitHub)
 

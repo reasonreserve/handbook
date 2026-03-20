@@ -1,6 +1,9 @@
 .DS_Store
 # Local MCP secrets — use .cursor/mcp.json.example as template
 .cursor/mcp.json
+.env
+.env.*
+!.env.example
 node_modules/
 dist/
 build/

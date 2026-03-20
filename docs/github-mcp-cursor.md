@@ -52,3 +52,13 @@ If you use **Copilot Business / Enterprise**, an admin may need **“MCP servers
 ## Verify
 
 After a restart, check **Settings → MCP** for **github**, then try Agent with a GitHub-related question. If something 403s, confirm token scopes.
+
+## Checklist before relying on Agent for GitHub / Projects
+
+1. **`.cursor/mcp.json`** exists in this repo (copy from [`.cursor/mcp.json.example`](./.cursor/mcp.json.example)) and **`PASTE_YOUR_GITHUB_PAT_HERE` is replaced** with your real token — not the placeholder string.
+2. **Only one `github` MCP entry** — either this project’s `.cursor/mcp.json` **or** `~/.cursor/mcp.json`, not both with different auth (avoid conflicts). Global can be an empty `{ "mcpServers": {} }` when using the project file.
+3. **`.env` is gitignored** — this repo’s `.gitignore` includes `.env` so secrets aren’t committed.
+4. **PAT scopes** — fine-grained token includes org **Projects** (and repo **Issues** / **Contents** / etc.) for [reasonreserve](https://github.com/reasonreserve), as you configured.
+5. **Restart Cursor** after changing `mcp.json`, then confirm **Settings → MCP** shows **github** connected.
+
+I can use GitHub MCP tools in Agent only after Cursor loads this config and the token is valid — I don’t have access to your GitHub account without that connection.
