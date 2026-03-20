@@ -29,6 +29,47 @@ GitHub’s Cursor guide states that **the remote GitHub MCP server currently req
 
    The config uses **`${env:GITHUB_MCP_PAT}`** — Cursor resolves this when loading MCP ([config interpolation](https://cursor.com/docs/context/mcp)).
 
+## Automating the PAT (recommended)
+
+Remote MCP still **cannot** read `.env` by itself. You automate by making sure **Cursor’s process** inherits `GITHUB_MCP_PAT` without typing `export` each time:
+
+### A. Launcher script (works with Dock-style `open`, no extra tools)
+
+From the repo:
+
+```bash
+./scripts/open-cursor.sh
+```
+
+This **sources `.env`** then starts the **Cursor CLI** (`cursor`) if it’s on your `PATH`, otherwise **`open -a Cursor`**. Use this from Terminal, Raycast, Alfred, or a macOS Shortcut that runs the script—one double-click workflow after you wire it up.
+
+Optional **shell alias** (add to `~/.zshrc`):
+
+```bash
+alias cursor-rr='/Users/ottomattas/Downloads/repos/reasonreserve/scripts/open-cursor.sh'
+```
+
+Adjust the path if you move the repo.
+
+### B. direnv (auto-load `.env` in every terminal `cd`)
+
+1. Install: `brew install direnv`  
+2. Add to `~/.zshrc`: `eval "$(direnv hook zsh)"`  
+3. In this repo once: `direnv allow`
+
+The committed [`.envrc`](../.envrc) loads `.env` when you enter the directory. Then start Cursor **from a terminal** with cwd inside the repo:
+
+```bash
+cd /path/to/reasonreserve
+cursor .
+```
+
+Environment flows into the Cursor process. **Opening Cursor from the Dock** still skips direnv—use **A** for that.
+
+### C. Why not “set it once forever” on macOS?
+
+GUI apps launched from Finder/Dock **do not** read your shell profile. Options like `launchctl setenv` are fragile across OS versions. The reliable patterns are **A** (script) or **B** (terminal + direnv).
+
 4. **Config location** — Either:
 
    - **Project:** `.cursor/mcp.json` in this repo (committed, no secrets), or  
