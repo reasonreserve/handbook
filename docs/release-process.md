@@ -6,8 +6,10 @@ This repository is **`reasonreserve/handbook`** — the canonical DX / Cursor / 
 
 ## Versioning
 
-- **`VERSION`** at the repo root is the **single source of truth** (semver, e.g. `1.2.0`, no `v` prefix).
+- **`VERSION`** at the repo root is the **single source of truth** for the semver string (e.g. `1.2.0`, no `v` prefix).
 - Git tags use a **`v` prefix**: `v1.2.0`.
+
+**Published vs `VERSION` on `main`:** a number in `VERSION` is **not** a GitHub Release until the matching **`v*` tag** exists on the remote. Until you tag and push, treat `VERSION` as the **intended** next release. Consumers (and [setup-tracking.md](setup-tracking.md)) should look at [Releases](https://github.com/reasonreserve/handbook/releases) for what is actually published.
 
 ## Cutting a release
 

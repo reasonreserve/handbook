@@ -4,7 +4,7 @@ Canonical **developer experience** content for the **[reasonreserve](https://git
 
 **Current version:** see [`VERSION`](VERSION) (also published as Git [tags](https://github.com/reasonreserve/handbook/releases) `v*.*.*`).
 
-**Setup backlog:** [issues on handbook](https://github.com/reasonreserve/handbook/issues) — [docs/setup-tracking.md](docs/setup-tracking.md).
+**Setup backlog:** [issues on handbook](https://github.com/reasonreserve/handbook/issues) — [docs/setup-tracking.md](docs/setup-tracking.md) (summary; **GitHub Issues and org Projects are canonical**).
 
 **Programme (epics):** [`reasonreserve/portfolio`](https://github.com/reasonreserve/portfolio) — org project **[Portfolio](https://github.com/orgs/reasonreserve/projects/1)**.
 

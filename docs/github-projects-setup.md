@@ -8,19 +8,19 @@ GitHub Projects (the built-in planning tool) is configured in the GitHub web UI 
 
 ## Can Cursor create or manage boards “from this interface”?
 
-**Not without your GitHub credentials.** This workspace does not include a GitHub MCP integration (only other tools like Linear may be available elsewhere). The assistant has no standing login to [github.com/reasonreserve](https://github.com/reasonreserve).
+**You need GitHub credentials** (browser session, PAT, or `gh` auth). The org is [github.com/reasonreserve](https://github.com/reasonreserve).
 
 What *does* work:
 
 | Approach | What you get |
 |----------|----------------|
 | **Browser** | Full control: [Org → Projects](https://github.com/orgs/reasonreserve/projects), create boards, fields, workflows ([About Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)). |
-| **`gh` on your machine** | After `gh auth login` with access to the org, the assistant can run **`gh project`** commands in the terminal to create/link projects—if you’ve authenticated and network is allowed. |
+| **`gh` on your machine** | After `gh auth login` with access to the org, you can run **`gh project`** commands to create/link projects. |
 | **`GITHUB_TOKEN` / fine-grained PAT** | Scripts or API calls can create Projects v2 items; the token must live in your environment or CI secrets—**do not paste tokens into chat**. |
 
-So: **day-to-day board management** stays in GitHub’s UI (or `gh`). **This repo** can still hold the plan, issue templates, and later automation; I can help draft issues/labels and terminal commands once `gh` is installed and logged in.
+**Day-to-day board management** stays in GitHub’s UI (or `gh`). **This repo** holds issue templates and docs such as [setup-tracking.md](setup-tracking.md); **GitHub Projects + Issues are the source of truth**—update those docs when the board changes.
 
-**Cursor + GitHub MCP:** After you configure [GitHub MCP in Cursor](github-mcp-cursor.md) (remote server + PAT in `GITHUB_MCP_PAT`), Agent can use GitHub tools subject to your token’s scopes—closer to “manage from the IDE,” still not a full replacement for the Projects UI for every drag-and-drop action.
+**Cursor + GitHub MCP:** After you configure [GitHub MCP in Cursor](github-mcp-cursor.md) (hosted server + PAT in `.cursor/mcp.json`), Agent can use GitHub MCP tools (issues, repos, PRs, etc.) within your token’s scopes. That does not replace every Projects UI action (e.g. drag-and-drop fields); use the browser for full project settings.
 
 ## Prerequisites
 
