@@ -34,16 +34,23 @@ The org project **description** points here: programme planning lives in the **`
 
 ## Handbook repo backlog (`reasonreserve/handbook`)
 
-Titles match **GitHub issue titles** (open/closed state is on GitHub only).
+Titles match **GitHub issue titles**. **Open/closed state** is on [GitHub](https://github.com/reasonreserve/handbook/issues) only—refresh this section when issues change.
+
+### Open
 
 | # | Title (GitHub) | Link |
 |---|----------------|------|
 | 1 | [Epic] Handbook + service-template rollout | https://github.com/reasonreserve/handbook/issues/1 |
 | 2 | [service-template] Create org template repo + push `service-template/` | https://github.com/reasonreserve/handbook/issues/2 |
 | 3 | [dx] PAT scopes: bootstrap (org repo create) vs MCP (minimal) | https://github.com/reasonreserve/handbook/issues/3 |
-| 4 | [handbook] Cut first release (e.g. v1.0.0 + GitHub Release) | https://github.com/reasonreserve/handbook/issues/4 |
 | 5 | [service-template] Private handbook: `HANDBOOK_READ_TOKEN` on first consumer | https://github.com/reasonreserve/handbook/issues/5 |
 | 6 | [docs] Keep handbook aligned with GitHub Projects official guidance | https://github.com/reasonreserve/handbook/issues/6 |
+
+### Closed (recent)
+
+| # | Title | Link |
+|---|--------|------|
+| 4 | [handbook] Cut first release (e.g. v1.0.0 + GitHub Release) | https://github.com/reasonreserve/handbook/issues/4 — [release v1.0.0](https://github.com/reasonreserve/handbook/releases/tag/v1.0.0) |
 
 ## `internal-poc`
 
